@@ -6,10 +6,11 @@ This is the repo for improving my programming scills, in particular to study Dja
      ```bash
      pip install dynaconf
      ```
-   # Create a file with secrets in the root folder of the project
+   # Create a file with secrets in the root of the local folder with project
      ```bash
      touch .secrets.yaml
      ```
+     * This file should be in .gitignore !!!
    # Create a file with settings in the root of thhe project (if it's absent)
      ```bash
      touch settings.yaml
