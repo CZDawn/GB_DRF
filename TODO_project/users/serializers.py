@@ -1,8 +1,8 @@
-from rest_framework.serializers import HyperLinkedModelSerializer
+from rest_framework.serializers import HyperlinkedModelSerializer
 from .models import TodoUser
 
 
-class TodoUserModelSerializer(HyperLinkedModelSerializer):
+class TodoUserModelSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = TodoUser
         fields = '__all__'
