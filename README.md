@@ -15,7 +15,7 @@ This is the repo for improving my programming scills, in particular to study Dja
      ```bash
      touch settings.yaml
      ```
-   # Create a file with managing secrets settings for dynaconf
+   # Create a file with managing secrets settings for dynaconf in the root of the local folder with project
      ```bash
      touch .env
      ```
