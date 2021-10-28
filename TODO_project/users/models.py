@@ -7,7 +7,8 @@ class TodoUser(AbstractUser):
         verbose_name='имя пользователя',
         max_length=128,
         blank=False,
-        null=False)
+        null=False,
+        unique=True)
     firstname = models.CharField(
         verbose_name='имя',
         max_length=128,
