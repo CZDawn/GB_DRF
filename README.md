@@ -48,9 +48,9 @@ This is the repo for improving my programming scills, in particular to study Dja
    # Add next code in .env
      ```
      CORE_LOADERS_FOR_DYNACONF=["YAML"]
-     ENVVAR_PREFIX_FOR_DYNACONF=XXX    # add here your own prefix to avoid random redefinition of variables
+     ENVVAR_PREFIX_FOR_DYNACONF=XXX    # instead of XXX add here your own prefix to avoid random redefinition of variables
      YAML_LOADER_FOR_DYNACONF=safe_load
-     ENV_FOR_DYNACONF=development      # change for 'production' if it's ready and your finished develop process
+     ENV_FOR_DYNACONF=development      # change for 'production' if it's ready and you finished develop process
      ```
 
      
