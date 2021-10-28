@@ -1,4 +1,4 @@
-# GB_DRF 
+# GB_DRF: TODO project
 This is the repo for improving my programming scills, in particular to study Django REST Framework.
 
 1. To manage with dynaconf do next steps (Linux):
