@@ -10,7 +10,9 @@ This is the repo for improving my programming scills, in particular to study Dja
      ```bash
      touch .secrets.yaml
      ```
-     * This file should be in the .gitignore file !!!
+     ```diff
+     - !!! This file should be in the .gitignore file !!!
+     ```
    # Create a file with settings in the root of the project (if it's absent)
      ```bash
      touch settings.yaml
@@ -19,7 +21,9 @@ This is the repo for improving my programming scills, in particular to study Dja
      ```bash
      touch .env
      ```
-     * This file should be in the .gitignore file !!!
+     ```diff
+     - !!! This file should be in the .gitignore file !!!
+     ```
    # Add next code in settings.yaml (if this file was created by yourself)
      ```yaml
      default:
