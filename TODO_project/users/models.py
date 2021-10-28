@@ -9,12 +9,12 @@ class TodoUser(AbstractUser):
         blank=False,
         null=False,
         unique=True)
-    firstname = models.CharField(
+    first_name = models.CharField(
         verbose_name='имя',
         max_length=128,
         blank=False,
         null=False)
-    lastname = models.CharField(
+    last_name = models.CharField(
         verbose_name='фамилия',
         max_length=128,
         blank=False,
