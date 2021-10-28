@@ -6,4 +6,4 @@ class TodoUserModelSerializer(ModelSerializer):
 
     class Meta:
         model = TodoUser
-        fields = '__all__'
+        fields = ['username', 'first_name', 'last_name', 'email']
