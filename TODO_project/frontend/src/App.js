@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios'
 import TodoUsersList from './components/TodoUsers.js'
 import HeaderNav from './components/header.js'
 import FooterNav from './components/footer.js'
@@ -15,25 +16,14 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        const TodoUsers = [
-            {
-                'username': 'user_1',
-                'first_name': 'Стас',
-                'last_name': 'Михайлов',
-                'email': 'stas@example.com'
-            },
-            {
-                'username': 'user_2',
-                'first_name': 'Егор',
-                'last_name': 'Бероев',
-                'email': 'egor@example.com'
-            }
-        ]
-        this.setState(
-            {
-                'todo_users': TodoUsers
-            }
-        )
+        axios.get('http://127.0.0.1:8000/api/users').then(response => {
+            const todo_users = response.data
+            this.setState(
+               {
+                   'todo_users': todo_users
+               }
+            )
+        }).catch(error => console.log(error))
     }
 
     render () {
