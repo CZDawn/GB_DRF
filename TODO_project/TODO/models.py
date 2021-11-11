@@ -24,6 +24,7 @@ class ToDo(models.Model):
         verbose_name='проект заметки')
     title = models.CharField(
         verbose_name='заголовок заметки',
+        max_length=128,
         blank=False)
     text = models.TextField(
         verbose_name='текст заметки',
@@ -31,7 +32,7 @@ class ToDo(models.Model):
     created_at = models.DateTimeField(
         verbose_name='дата создания заметки',
         auto_now_add=True)
-    updated_at = models.DateTimefield(
+    updated_at = models.DateTimeField(
         verbose_name='дата последнего обновления заметки',
         auto_now=True)
     author = models.OneToOneField(
