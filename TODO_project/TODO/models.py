@@ -39,6 +39,10 @@ class ToDo(models.Model):
         TodoUser,
         on_delete=models.CASCADE,
         verbose_name='автор заметки')
+    active_tag = models.BooleanField(
+        verbose_name='статус заметки',
+        blank=False,
+        default=True)
 
     def __str__(self):
         return f'Заметка: {self.title}'
