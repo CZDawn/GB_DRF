@@ -1,6 +1,7 @@
 django
 djangorestframework
+django-filter
+django-cors-headers
 requests
 dynaconf
 markdown
-django-filter
