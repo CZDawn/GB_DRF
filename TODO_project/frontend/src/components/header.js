@@ -1,22 +1,22 @@
 import React from 'react'
+import {BrowserRouter, Link} from 'react-router-dom'
 
 
 const HeaderNav = ({ header_nav }) => {
     return (
         <header class="header_container">
             <nav class="header_nav">
-                <a class="header_nav_item" href="#">
-                    Главная
-                </a>
-                <a class="header_nav_item" href="#">
-                    Календарь
-                </a>
-                <a class="header_nav_item" href="#">
-                    Мои задачи
-                </a>
-                <a class="header_nav_item" href="#">
-                    Профиль
-                </a>
+                <BrowserRouter>
+                    <Link to='/' class="header_nav_item">
+                        Пользователи
+                    </Link>
+                    <Link to='/project' class="header_nav_item">
+                        Проекты
+                    </Link>
+                    <Link to='/todo' class="header_nav_item">
+                        Заметки
+                    </Link>
+                </BrowserRouter>
             </nav>
         </header>
     )
