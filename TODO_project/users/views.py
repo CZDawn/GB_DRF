@@ -5,7 +5,8 @@ from .models import TodoUser
 from .serializers import TodoUserModelSerializer
 
 
-class TodoUserViewSet(mixins.ListModelMixin,
+class TodoUserViewSet(mixins.CreateModelMixin,
+                      mixins.ListModelMixin,
                       mixins.RetrieveModelMixin,
                       mixins.UpdateModelMixin,
                       viewsets.GenericViewSet):
