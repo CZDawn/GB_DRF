@@ -26,3 +26,6 @@ class TodoUser(AbstractUser):
         null=False,
         unique=True)
 
+    def __str__(self):
+        return f'Пользователь: {self.first_name} {self.last_name}'
+
