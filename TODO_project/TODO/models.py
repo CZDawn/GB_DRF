@@ -35,9 +35,9 @@ class ToDo(models.Model):
     updated_at = models.DateTimeField(
         verbose_name='дата последнего обновления заметки',
         auto_now=True)
-    author = models.OneToOneField(
+    author = models.ForeignKey(
         TodoUser,
-        on_delete=models.CASCADE,
+        models.PROTECT,
         verbose_name='автор заметки')
     active_tag = models.BooleanField(
         verbose_name='статус заметки',
