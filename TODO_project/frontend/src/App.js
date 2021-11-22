@@ -2,6 +2,7 @@ import './App.css';
 import axios from 'axios'
 import React from 'react';
 import logo from './logo.svg';
+import Cookies from 'universal-cookie'
 import LogiForm from './components/Auth.js'
 import TODOsList from './components/TODOs.js'
 import FooterNav from './components/footer.js'
@@ -24,7 +25,7 @@ class App extends React.Component {
     set_token(token) {
         const cookies = new Cookies()
         cookies.set('token', token)
-        this.setState({'token': token})
+        this.setState({'token': token}, ()=>this.load_data())
     }
 
     is_authenticated() {
@@ -38,7 +39,7 @@ class App extends React.Component {
     get_token_from_storage() {
         const cookies = new Cookies()
         const token = cookies.get('token')
-        this.setState({'token': token})
+        this.setState({'token': token}, ()=>this.load_data())
     }
 
     get_token(username, password) {
@@ -47,23 +48,30 @@ class App extends React.Component {
         }).catch(error => alert('Неверный логин или пароль'))
     }
 
+    get_headers() {
+        let headers = {'Content-Type': 'application/json'}
+        if (this.is_authenticated())
+            {headers['Authorization'] = 'Token ' + this.state.token}
+            return headers
+    }
+
     load_data() {
-        axios.get('http://127.0.0.1:8000/api/users/').then(response => {
+        const headers = this.get_headers()
+        axios.get('http://127.0.0.1:8000/api/users/', {headers}).then(response => {
             this.setState({'todo_users': response.data})
         }).catch(error => console.log(error))
 
-        axios.get('http://127.0.0.1:8000/api/project/').then(response => {
+        axios.get('http://127.0.0.1:8000/api/project/', {headers}).then(response => {
             this.setState({'projects': projects.results})
         }).catch(error => console.log(error))
 
-        axios.get('http://127.0.0.1:8000/api/todo/').then(response => {
+        axios.get('http://127.0.0.1:8000/api/todo/', {headers}).then(response => {
             this.setState({'todo': todo.results})
         }).catch(error => console.log(error))
     }
 
     componentDidMount() {
         this.get_token_from_storage()
-        this.load_data()
     }
 
     render () {
