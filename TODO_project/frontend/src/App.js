@@ -3,7 +3,7 @@ import axios from 'axios'
 import React from 'react';
 import logo from './logo.svg';
 import Cookies from 'universal-cookie'
-import LogiForm from './components/Auth.js'
+import LoginForm from './components/Auth.js'
 import TODOsList from './components/TODOs.js'
 import FooterNav from './components/footer.js'
 import HeaderNav from './components/header.js'
@@ -18,6 +18,7 @@ class App extends React.Component {
         this.state = {
             'todo_users': [],
             'projects': [],
+            'todos': [],
             'token': ''
         }
     }
@@ -58,15 +59,15 @@ class App extends React.Component {
     load_data() {
         const headers = this.get_headers()
         axios.get('http://127.0.0.1:8000/api/users/', {headers}).then(response => {
-            this.setState({'todo_users': response.data})
+            this.setState({'todo_users': response.data.results})
         }).catch(error => console.log(error))
 
         axios.get('http://127.0.0.1:8000/api/project/', {headers}).then(response => {
-            this.setState({'projects': projects.results})
+            this.setState({'projects': response.data.results})
         }).catch(error => console.log(error))
 
         axios.get('http://127.0.0.1:8000/api/todo/', {headers}).then(response => {
-            this.setState({'todo': todo.results})
+            this.setState({'todo': response.data.results})
         }).catch(error => console.log(error))
     }
 
