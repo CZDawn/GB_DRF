@@ -5,14 +5,14 @@ from users.serializers import TodoUserModelSerializer
 
 
 class ProjectModelSerializer(HyperlinkedModelSerializer):
-    authors = TodoUserModelSerializer(many=True)
+    authors = TodoUserModelSerializer['username']
     class Meta:
         model = Project
         fields = '__all__'
 
 
 class ToDoModelSerializer(HyperlinkedModelSerializer):
-    author = TodoUserModelSerializer()
+    author = TodoUserModelSerializer['username']
 
     class Meta:
         model = ToDo
