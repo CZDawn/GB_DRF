@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ViewSet
 from rest_framework.pagination import LimitOffsetPagination
@@ -17,6 +18,7 @@ class ProjectViewSet(ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
     pagination_class = ProjectLimitOffsetPagination
+    permission_classes = [permissions.IsAuthenticated]
     filterset_class = ProjectFilter
 
 
