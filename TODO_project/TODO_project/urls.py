@@ -5,6 +5,8 @@ from rest_framework.routers import DefaultRouter
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from graphene_django.views import GraphQLView
+from django.views.decorators.csrf import csrf_exempt
 
 from users.views import TodoUserViewSet
 from TODO.views import ProjectViewSet, ToDoViewSet
@@ -34,4 +36,5 @@ urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), \
          name='schema-redoc'),
+    path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ]
