@@ -4,16 +4,16 @@ import {BrowserRouter, Link} from 'react-router-dom'
 
 const HeaderNav = ({ header_nav }) => {
     return (
-        <header class="header_container">
-            <nav class="header_nav">
+        <header className="header_container">
+            <nav className="header_nav">
                 <BrowserRouter>
-                    <Link to='/' class="header_nav_item">
+                    <Link to='/' className="header_nav_item">
                         Пользователи
                     </Link>
-                    <Link to='/project' class="header_nav_item">
+                    <Link to='/project' className="header_nav_item">
                         Проекты
                     </Link>
-                    <Link to='/todo' class="header_nav_item">
+                    <Link to='/todo' className="header_nav_item">
                         Заметки
                     </Link>
                 </BrowserRouter>

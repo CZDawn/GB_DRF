@@ -14,7 +14,7 @@ const TodoUserItem = ({TodoUser}) => {
 
 const TodoUsersList = ({TodoUsers}) => {
     return (
-        <main class="page_content">
+        <main className="page_content">
             <table>
                 <th>Имя пользователя</th>
                 <th>Имя</th>
