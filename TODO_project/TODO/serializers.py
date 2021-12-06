@@ -4,18 +4,18 @@ from .models import Project, ToDo
 from users.serializers import TodoUserModelSerializer
 
 
-class ProjectModelSerializerBase(HyperlinkedModelSerializer):
+class ProjectModelSerializerBase(ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
 
-class ProjectModelSerializer(HyperlinkedModelSerializer):
+class ProjectModelSerializer(ModelSerializer):
     authors = TodoUserModelSerializer['username']
     class Meta:
         model = Project
         fields = '__all__'
 
-class ToDoModelSerializer(HyperlinkedModelSerializer):
+class ToDoModelSerializer(ModelSerializer):
     author = TodoUserModelSerializer['username']
 
     class Meta:
