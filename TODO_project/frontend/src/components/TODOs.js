@@ -1,8 +1,9 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 
 /* TODO - добавить вывод авторов заметки */
-const TODOItem = ({TODO}) => {
+const TODOItem = ({TODO, deleteToDo}) => {
     return (
         <tr>
             <td>{TODO.title}</td>
@@ -11,12 +12,13 @@ const TODOItem = ({TODO}) => {
             <td>{TODO.updatedAt}</td>
             <td>{TODO.activeTag}</td>
             <td>{TODO.project}</td>
+            <td><button onClick={()=>deleteToDo(TODO.id)} type='button'>Удалить</button></td>
         </tr>
     )
 }
 
 /* TODO - добавить колонку с авторами проектов */
-const TODOsList = ({TODOs}) => {
+const TODOsList = ({TODOs, deleteToDo}) => {
     return (
         <main class="page_content">
             <table>
@@ -26,8 +28,9 @@ const TODOsList = ({TODOs}) => {
                 <th>Дата обновления</th>
                 <th>Статус</th>
                 <th>Название проекта</th>
-                {TODOs.map((TODO) => <TODOItem TODO={TODO} />)}
+                {TODOs.map((TODO) => <TODOItem TODO={TODO} deleteToDo={deleteToDo}/>)}
             </table>
+            <Link to="/todo/create">Создать заметку</Link>
         </main>
     )
 }

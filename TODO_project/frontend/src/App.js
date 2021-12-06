@@ -1,12 +1,11 @@
 import './App.css';
 import axios from 'axios'
 import React from 'react';
-import logo from './logo.svg';
 import Cookies from 'universal-cookie'
 import LoginForm from './components/Auth.js'
 import TODOsList from './components/TODOs.js'
-import FooterNav from './components/footer.js'
-import HeaderNav from './components/header.js'
+import ProjectForm from './components/ProjectForm.js'
+import ToDoForm from './components/ToDoForm.js'
 import ProjectsList from './components/Projects.js'
 import TodoUsersList from './components/TodoUsers.js'
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom'
@@ -30,7 +29,7 @@ class App extends React.Component {
     }
 
     is_authenticated() {
-        return this.state.token != ''
+        return this.state.token !== ''
     }
 
     logout() {
@@ -54,6 +53,43 @@ class App extends React.Component {
         if (this.is_authenticated())
             {headers['Authorization'] = 'Token ' + this.state.token}
             return headers
+    }
+
+    createProject(name, author) {
+        const headers = this.get_headers()
+        const data = {name: name, authors: [author], repo_link: 'ссылка'}
+        axios.post('http://127.0.0.1:8000/api/project/', data, {headers}).then(response => {
+            this.load_data() 
+        }).catch(error => {
+            console.log(error)
+            this.setState({authors: []})
+        })
+    }
+    
+    createToDo(title, text, active_tag, project, author) {
+        const headers = this.get_headers()
+        const data = {title: title, text: text, active_tag: true, project: project, author: [author]}
+        console.log(data)
+        axios.post('http://127.0.0.1:8000/api/todo/', data, {headers}).then(response => {
+            this.load_data() 
+        }).catch(error => {
+            console.log(error)
+            this.setState({authors: []})
+        })
+    }
+
+    deleteProject(id) {
+        const headers = this.get_headers()
+        axios.delete(`http://127.0.0.1:8000/api/project/${id}`, {headers}).then(response => {
+            this.load_data()
+        }).catch(error => console.log(error))
+    }
+    
+    deleteToDo(id) {
+        const headers = this.get_headers()
+        axios.delete(`http://127.0.0.1:8000/api/todo/${id}`, {headers}).then(response => {
+            this.load_data()
+        }).catch(error => console.log(error))
     }
 
     load_data() {
@@ -90,13 +126,31 @@ class App extends React.Component {
                             <Link to='/todo' className="header_nav_item">
                                 Заметки
                             </Link>
-                            {this.is_authenticated() ? <button onClick={()=>this.logout()}>Logout</button> : <Link to='/login'>Login</Link>}
+                            {this.is_authenticated() ? <button onClick={()=>this.logout()}>Выход</button> : <Link to='/login'>Вход</Link>}
                         </nav>
                     </header>
-                    <Route exact path='/' component={() => <TodoUsersList TodoUsers={this.state.todo_users}/>}/>
-                    <Route exact path='/project' component={() => <ProjectsList Projects={this.state.projects}/>}/>
-                    <Route exact path='/todo' component={() => <TODOsList TODOs={this.state.todo}/>}/>
-                    <Route exact path='/login' component={() => <LoginForm get_token={(username, password) => this.get_token(username, password)}/>}/>
+                    <Switch>
+                        <Route exact path='/' component={() => <TodoUsersList 
+                            TodoUsers={this.state.todo_users}/>
+                        }/>
+                        <Route exact path='/project/create' component={() => <ProjectForm 
+                            createProject={(name, author) => this.createProject(name, author)}/>
+                        }/>
+                        <Route exact path='/project' component={() => <ProjectsList 
+                            Projects={this.state.projects} 
+                            deleteProject={(id) => this.deleteProject(id)}/>
+                        }/>
+                        <Route exact path='/todo/create' component={() => <ToDoForm 
+                            createToDo={(title, text, active_tag, project, author) => this.createToDo(
+                                title, text, active_tag, project, author)}/>
+                        }/>
+                        <Route exact path='/todo' component={() => <TODOsList
+                            TODOs={this.state.todo} deleteToDo={(id) => this.deleteToDo(id)}/>
+                        }/>
+                        <Route exact path='/login' component={() => <LoginForm
+                            get_token={(username, password) => this.get_token(username, password)}/>
+                        }/>
+                    </Switch>
                     <footer className="footer_container">
                         <nav className="footer_nav">
                             <Link to='/contacts' className="footer_nav_item">
