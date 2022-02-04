@@ -1,17 +1,24 @@
-from rest_framework.serializers import HyperlinkedModelSerializer
+from rest_framework.serializers import HyperlinkedModelSerializer, ModelSerializer
 
 from .models import Project, ToDo
 from users.serializers import TodoUserModelSerializer
 
 
-class ProjectModelSerializer(HyperlinkedModelSerializer):
-    authors = TodoUserModelSerializer['username']
+class ProjectModelSerializerBase(ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
 
 
-class ToDoModelSerializer(HyperlinkedModelSerializer):
+class ProjectModelSerializer(ModelSerializer):
+    authors = TodoUserModelSerializer['username']
+
+    class Meta:
+        model = Project
+        fields = '__all__'
+
+
+class ToDoModelSerializer(ModelSerializer):
     author = TodoUserModelSerializer['username']
 
     class Meta:

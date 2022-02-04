@@ -7,7 +7,7 @@ from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 
 from .models import Project, ToDo
 from .filters import ProjectFilter
-from .serializers import ProjectModelSerializer, ToDoModelSerializer
+from .serializers import ProjectModelSerializer, ProjectModelSerializerBase, ToDoModelSerializer
 
 
 class ProjectLimitOffsetPagination(LimitOffsetPagination):
@@ -18,8 +18,13 @@ class ProjectViewSet(ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
     pagination_class = ProjectLimitOffsetPagination
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     filterset_class = ProjectFilter
+
+    def get_serializer_class(self):
+        if self.request.method in ['GET']:
+            return ProjectModelSerializer
+        return ProjectModelSerializerBase
 
 
 class ToDoLimitOffsetPagination(LimitOffsetPagination):

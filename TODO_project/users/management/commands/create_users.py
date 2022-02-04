@@ -32,7 +32,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         FIRST_NAMES = ['Иван', 'Петр', 'Федор']
         LAST_NAMES = ['Иванов', 'Петров', 'Федоров']
-        quantity_of_users = kwargs['quantity_of_users']
+        quantity_of_users = 3 # kwargs['quantity_of_users']
         admin_flag = kwargs['admin']
         pass_flag = kwargs['password']
 
@@ -57,7 +57,7 @@ class Command(BaseCommand):
                 else:
                     print('You entered an incorret email!')
             else:
-                username = f'user_{randint(1, 10)}'
+                username = f'user_{randint(20, 50)}'
                 TodoUser.objects.create_user(
                     username=username,
                     first_name=choice(FIRST_NAMES),

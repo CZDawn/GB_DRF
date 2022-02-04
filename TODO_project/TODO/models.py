@@ -17,11 +17,12 @@ class Project(models.Model):
     def __str__(self):
         return f'Проект: {self.name}'
 
+
 class ToDo(models.Model):
     project = models.ForeignKey(
         Project,
-        models.PROTECT,
-        verbose_name='проект заметки')
+        verbose_name='проект заметки',
+        on_delete=models.CASCADE)
     title = models.CharField(
         verbose_name='заголовок заметки',
         max_length=128,
@@ -37,8 +38,8 @@ class ToDo(models.Model):
         auto_now=True)
     author = models.ForeignKey(
         TodoUser,
-        models.PROTECT,
-        verbose_name='автор заметки')
+        verbose_name='автор заметки',
+        on_delete=models.CASCADE)
     active_tag = models.BooleanField(
         verbose_name='статус заметки',
         blank=False,
@@ -46,4 +47,3 @@ class ToDo(models.Model):
 
     def __str__(self):
         return f'Заметка: {self.title}'
-
