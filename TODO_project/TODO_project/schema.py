@@ -9,10 +9,12 @@ class TodoUserType(DjangoObjectType):
         model = TodoUser
         fields = '__all__'
 
+
 class ProjectType(DjangoObjectType):
     class Meta:
         model = Project
         fields = '__all__'
+
 
 class ToDoType(DjangoObjectType):
     class Meta:
@@ -38,4 +40,3 @@ class Query(graphene.ObjectType):
 
 
 schema = graphene.Schema(query=Query)
-

@@ -21,7 +21,7 @@ schema_view = get_schema_view(
         license=openapi.License(name="MIT License"),
     ),
     public=True,
-    permission_classes=[permissions.AllowAny],
+    permission_classes=(permissions.AllowAny,),
 )
 
 router = DefaultRouter()
@@ -34,7 +34,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
     path('api-token-auth/', views.obtain_auth_token),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), \
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0),
          name='schema-redoc'),
     path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ]

@@ -17,6 +17,7 @@ class Project(models.Model):
     def __str__(self):
         return f'Проект: {self.name}'
 
+
 class ToDo(models.Model):
     project = models.ForeignKey(
         Project,
@@ -46,4 +47,3 @@ class ToDo(models.Model):
 
     def __str__(self):
         return f'Заметка: {self.title}'
-

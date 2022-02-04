@@ -18,7 +18,7 @@ class ProjectViewSet(ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
     pagination_class = ProjectLimitOffsetPagination
-    #permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     filterset_class = ProjectFilter
 
     def get_serializer_class(self):

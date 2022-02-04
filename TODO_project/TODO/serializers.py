@@ -9,11 +9,14 @@ class ProjectModelSerializerBase(ModelSerializer):
         model = Project
         fields = '__all__'
 
+
 class ProjectModelSerializer(ModelSerializer):
     authors = TodoUserModelSerializer['username']
+
     class Meta:
         model = Project
         fields = '__all__'
+
 
 class ToDoModelSerializer(ModelSerializer):
     author = TodoUserModelSerializer['username']

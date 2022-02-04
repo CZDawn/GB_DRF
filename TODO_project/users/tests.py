@@ -7,7 +7,7 @@ from rest_framework.test import APIRequestFactory, APIClient, APITestCase
 
 from .views import TodoUserViewSet
 from .models import TodoUser
-from TODO.models import Project
+from ..TODO.models import Project
 
 
 class TestTodoUserViewSet(TestCase):
